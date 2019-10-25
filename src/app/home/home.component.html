@@ -1,3 +1,16 @@
-<p>
-  home works!
-</p>
+<div style="padding: 13px;">
+  <mat-spinner *ngIf="people.length===0">
+  </mat-spinner>
+  <mat-card *ngFor="let p of people" style="margin-top: 10px;">
+    <mat-card-header>
+      <mat-card-title>{{p.last_name}}</mat-card-title>
+      <mat-card-subtitle>{{p.first_name}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{p.email}}</p>
+      <p *ngIf="p.photo"><img style="height:5%; width: 5%;" src="../../assets/images/{{p.photo}}" /></p>
+      <p *ngIf="!p.photo"><img style="height:5%; width: 5%;" src="../../assets/images/shark.jpg" /></p>
+    </mat-card-content>
+    <button mat-button>Send E-Mail</button>
+  </mat-card>
+</div>
