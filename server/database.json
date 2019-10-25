@@ -1,0 +1,23 @@
+{
+    "people":[
+                {
+                    "id":1,
+                    "first_name":"Peter",
+                    "last_name": "Kantroupus",
+                    "email": "peterk@yahoo.ca",
+                    "photo": "Peter_Kantroupus.jpg"
+                },
+                {
+                    "id":2,
+                    "first_name":"Dee",
+                    "last_name": "Znuts",
+                    "email": "dee@prankster.com"    
+                },
+                {
+                    "id":3,
+                    "first_name":"Felipe",
+                    "last_name": "Rod",
+                    "email": "feliperod0519@hotmail.com"    
+                }
+    ]
+} 
