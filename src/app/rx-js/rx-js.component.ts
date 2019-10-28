@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
+
 
 @Component({
   selector: 'app-rx-js',
@@ -28,6 +29,10 @@ export class RxJSComponent implements OnInit {
       complete: () => console.log('I am done') 
     }); 
     console.log('After subscribe');
+    
+    let mouseMoves$ = fromEvent<MouseEvent>(document,'mousemove');
+    mouseMoves$.subscribe(event => console.log(event.clientX,event.clientY));
+
   }
 
   /*
@@ -55,6 +60,8 @@ export class RxJSComponent implements OnInit {
 
   console.log('After subscribe'); 
 </script> 
+
+let startClick$ = fromEvent(startButton,'click').subscribe(()=>{
   */
 
 }
