@@ -11,13 +11,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
 import { RxJSComponent } from './rx-js/rx-js.component';
+import { MouseComponent } from './mouse/mouse.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    RxJSComponent
+    RxJSComponent,
+    MouseComponent
   ],
   imports: [
     BrowserModule,
