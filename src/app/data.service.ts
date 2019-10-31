@@ -19,10 +19,11 @@ export class DataService {
 
   public sendGetRequestPeople()
   {
-    return this.httpClient.get(this.REST_API_SERVER_PEOPLE, 
-                               {  params: new HttpParams({fromString: "_page=1&_limit=20"})} ).
+    return this.httpClient.get(this.REST_API_SERVER_PEOPLE,{  params: new HttpParams({fromString: "_page=1&_limit=20"})}).
                                pipe(retry(4), catchError(this.handleError));
   }
+
+//{  params: new HttpParams({fromString: "_page=1&_limit=20"})}
 
   parseLinkHeader(header) {
     if (header.length == 0) {

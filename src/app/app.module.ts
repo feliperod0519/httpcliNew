@@ -12,6 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
 import { RxJSComponent } from './rx-js/rx-js.component';
 import { MouseComponent } from './mouse/mouse.component';
+import { RegistrationComponent } from './registration/registration.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,14 +22,16 @@ import { MouseComponent } from './mouse/mouse.component';
     HomeComponent,
     AboutComponent,
     RxJSComponent,
-    MouseComponent
+    MouseComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule
+    MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
