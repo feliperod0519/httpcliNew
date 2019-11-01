@@ -5,19 +5,26 @@
                     "first_name":"Peter",
                     "last_name": "Kantroupus",
                     "email": "peterk@yahoo.ca",
-                    "photo": "Peter_Kantroupus.jpg"
+                    "photo": "Peter_Kantroupus.jpg",
+                    "mobile": "1800-java-man",
+                    "country": "Indonesia"
                 },
                 {
                     "id":2,
                     "first_name":"Dee",
                     "last_name": "Znuts",
-                    "email": "dee@prankster.com"    
+                    "email": "dee@prankster.com",
+                    "mobile": "890-789-1234",
+                    "country": "Comore Islands"    
                 },
                 {
                     "id":3,
                     "first_name":"Felipe",
                     "last_name": "Rod",
-                    "email": "feliperod0519@hotmail.com"    
+                    "email": "feliperod0519@hotmail.com",
+                    "photo": "mazinger-z-feliperod.jpg",
+                    "mobile": "581-307-9482",
+                    "country": "Canada"    
                 }
     ]
 } 
