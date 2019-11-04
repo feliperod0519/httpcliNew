@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { PersonData, ContactRequest } from '../../models/peopleRequest'
 
+import { DataService } from '../data.service';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -17,7 +19,7 @@ export class RegistrationComponent implements OnInit {
 
   selectedCountry:string = "";
 
-  constructor(private formBuilder: FormBuilder) 
+  constructor(private formBuilder: FormBuilder, private dataService: DataService) 
   { 
       this.registrationForm = this.createFormGroup_1(formBuilder);
   }
@@ -44,6 +46,7 @@ export class RegistrationComponent implements OnInit {
     const result: ContactRequest = Object.assign({},this.registrationForm.value);  
     result.personalData = Object.assign({},result.personalData);
     console.log(result);
+    this.dataService.registerPerson(result.personalData);
   }
 
   revert(){

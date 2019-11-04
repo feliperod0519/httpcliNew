@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/operators';
+import { PersonData, ContactRequest } from '../models/peopleRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,15 @@ export class DataService {
   {
     return this.httpClient.get(this.REST_API_SERVER_PEOPLE,{  params: new HttpParams({fromString: "_page=1&_limit=20"})}).
                                pipe(retry(4), catchError(this.handleError));
+  }
+
+  public registerPerson(newPerson: PersonData){
+    const req= this.httpClient.post(this.REST_API_SERVER_PEOPLE,newPerson).subscribe(r=>{
+                                                                                          console.log(r);
+                                                                                        },
+                                                                                    e=>{
+                                                                                          console.log("Error");
+                                                                                        });
   }
 
 //{  params: new HttpParams({fromString: "_page=1&_limit=20"})}
