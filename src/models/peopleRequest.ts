@@ -11,5 +11,5 @@ export class PersonData{
     photo: string = 'default.jpg';
     mobile: string = '555-888-9999';
     country: string = "Canada";
-
+    pwd: string = "HELLO";
 }

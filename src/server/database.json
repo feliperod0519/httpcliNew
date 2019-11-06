@@ -7,7 +7,8 @@
       "email": "peterk@yahoo.ca",
       "photo": "Peter_Kantroupus.jpg",
       "mobile": "1800-java-man",
-      "country": "Indonesia"
+      "country": "Indonesia",
+      "pwd": "1234"
     },
     {
       "id": 2,
@@ -15,7 +16,8 @@
       "last_name": "Znuts",
       "email": "dee@prankster.com",
       "mobile": "890-789-1234",
-      "country": "Comore Islands"
+      "country": "Comore Islands",
+      "pwd": "1234"
     },
     {
       "id": 3,
@@ -24,25 +26,8 @@
       "email": "feliperod0519@hotmail.com",
       "photo": "mazinger-z-feliperod.jpg",
       "mobile": "581-307-9482",
-      "country": "Canada"
-    },
-    {
-      "id": 4,
-      "last_name": "user",
-      "first_name": "test",
-      "email": "test_user@test.com",
-      "photo": "default.jpg",
-      "mobile": "555-888-9999",
-      "country": "Canada"
-    },
-    {
-      "id": 5,
-      "last_name": "user",
-      "first_name": "test",
-      "email": "test_user@test.com",
-      "photo": "default.jpg",
-      "mobile": "555-888-9999",
-      "country": "Canada"
+      "country": "Canada",
+      "pwd": "1234"
     }
   ]
 }
