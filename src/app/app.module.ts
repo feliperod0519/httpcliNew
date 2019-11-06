@@ -15,6 +15,7 @@ import { MouseComponent } from './mouse/mouse.component';
 import { RegistrationComponent } from './registration/registration.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { BehaviorSubjectComponent } from './behavior-subject/behavior-subject.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AboutComponent,
     RxJSComponent,
     MouseComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    BehaviorSubjectComponent
   ],
   imports: [
     BrowserModule,
