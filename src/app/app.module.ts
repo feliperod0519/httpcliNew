@@ -17,6 +17,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubjectComponent } from './behavior-subject/behavior-subject.component';
 
+import { StorageServiceModule } from 'ngx-webstorage-service';
+import { LocalStorageServiceService } from './local-storage-service.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,9 +36,10 @@ import { BehaviorSubjectComponent } from './behavior-subject/behavior-subject.co
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    StorageServiceModule
   ],
-  providers: [],
+  providers: [LocalStorageServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

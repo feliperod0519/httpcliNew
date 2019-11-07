@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, fromEvent } from 'rxjs';
+import { Observable, fromEvent, of, from } from 'rxjs';
+import { mergeMap, delay, map } from 'rxjs/operators';
 
+import { ajax } from 'rxjs/ajax';
 
 @Component({
   selector: 'app-rx-js',
@@ -33,35 +35,34 @@ export class RxJSComponent implements OnInit {
     let mouseMoves$ = fromEvent<MouseEvent>(document,'mousemove');
     mouseMoves$.subscribe(event => console.log(event.clientX,event.clientY));
 
+    const saveLocation = location => {
+                                        return of(location).pipe(delay(500));
+                                     };
+
+    const API_URL = "http://jsonplaceholder.typicode.com/todos/1";
+    
+    const click$ = fromEvent<MouseEvent>(document,'click');
+    
+    let x = click$.pipe(
+                  mergeMap((e:MouseEvent)=>{
+                                              return of({
+                                                        x: e.clientX,
+                                                        y: e.clientY,
+                                                        t: Date.now()
+                                                        }).pipe(delay(500));
+                                           })
+               ).subscribe(r=>console.log(r));
+    x.unsubscribe();
+
+    click$.pipe(mergeMap(()=>ajax.getJSON(API_URL))).subscribe(r=>console.log(r));
+
+    const myPromise = v => new Promise(resolve => resolve(`${v}`));
+    const source$ = of("Hello");
+    source$.pipe(mergeMap(v=>myPromise(v))).subscribe((v)=>console.log(v));
+    
+    const source_2$ = 
+    of("World").pipe(map(v=>from(myPromise(v)).subscribe(v=>v))).subscribe((v)=>console.log(v));
+
   }
-
-  /*
-  <script type="text/babel"> 
-  const observable = Rx.Observable.create((observer) => { 
-    observer.next(1); 
-    observer.next(2); 
-
-    setTimeout(() => { 
-      observer.next(3); 
-      observer.next(4); 
-      observer.complete(); 
-    }, 1000); 
-
-    observer.next(5); 
-  }); 
-
-  console.log('Before subscribe'); 
-
-  observable.subscribe({ 
-    next: val => console.log(`Got value ${val}`), 
-    error: err => console.log(`Something went wrong ${err}`), 
-    complete: () => console.log('I am done') 
-  }); 
-
-  console.log('After subscribe'); 
-</script> 
-
-let startClick$ = fromEvent(startButton,'click').subscribe(()=>{
-  */
 
 }

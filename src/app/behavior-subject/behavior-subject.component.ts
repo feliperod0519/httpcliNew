@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, fromEvent, interval, merge } from 'rxjs';
 import { map, tap, mergeMap } from 'rxjs/operators';
 
+import { LocalStorageServiceService } from '../local-storage-service.service';
+
 @Component({
   selector: 'app-behavior-subject',
   templateUrl: './behavior-subject.component.html',
@@ -13,7 +15,7 @@ export class BehaviorSubjectComponent implements OnInit {
   x:number;
   y:number;
 
-  constructor() {
+  constructor(private localStorageService: LocalStorageServiceService) {
                                                                         
   }
 
@@ -49,22 +51,8 @@ export class BehaviorSubjectComponent implements OnInit {
     );
     merge(click$, interval$).subscribe();
     
-    /*
-    this.id= 0;
-    this.x = 100;
-    this.y = 100;
-    let subject = new BehaviorSubject(0);
-     let click$ = fromEvent(document,'click').pipe(
-                                                      map((e: MouseEvent)=>({ 
-                                                                              x: e.clientX,
-                                                                              y: e.clientY,
-                                                                              id: Math.random()
-                                                                           })),
-                                                      tap(this.setMyStyles),
-                                                      mergeMap(c=>subject.pipe)
-                                                  );
-     click$.subscribe(console.log); 
-     */
+    this.localStorageService.storeOnLocalStorage('hello');
+    
   }
 
   setMyStyles() {
