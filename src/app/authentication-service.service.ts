@@ -11,11 +11,10 @@ import { PersonData } from '../models/peopleRequest';
 })
 export class AuthenticationServiceService {
 
-  private currentUserSubject: BehaviorSubject<PersonData>;
-  public currentUser: Observable<PersonData>;
+  constructor(private http: HttpClient) {  
+  }
 
-  constructor(private http: HttpClient) { 
-     this.currentUserSubject = new BehaviorSubject<PersonData>(new PersonData);
-     this.currentUser = this.currentUserSubject.asObservable();
+  login(email:string, password:string){
+    
   }
 }

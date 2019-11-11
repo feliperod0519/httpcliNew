@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { throwError } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/operators';
 import { PersonData, ContactRequest } from '../models/peopleRequest';
+import { userInfo } from 'os';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,19 @@ export class DataService {
                                                                                           console.log("Error");
                                                                                         });
   }
+
+  /*
+  public login(email:string, password: string): boolean{
+    let answer: boolean = false;
+    let users = [];
+    this.httpClient.get(this.REST_API_SERVER_PEOPLE).subscribe(req=>{
+                                                                      users= req;
+                                                               },
+                                                               e=>{
+
+                                                               });
+    return answer;
+  }*/
 
 //{  params: new HttpParams({fromString: "_page=1&_limit=20"})}
 
