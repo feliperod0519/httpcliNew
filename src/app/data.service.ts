@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/operators';
 import { PersonData, ContactRequest } from '../models/peopleRequest';
-import { userInfo } from 'os';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,8 @@ export class DataService {
   public next: string = "";
   public last: string = "";
 
+  
+
   constructor(private httpClient: HttpClient) { }
 
   public sendGetRequestPeople()
@@ -26,6 +28,21 @@ export class DataService {
   }
 
   public registerPerson(newPerson: PersonData){
+    let people = [];
+    let currentId = 99;
+    this.sendGetRequestPeople().subscribe((data:any[])=>{
+                                                          people = data;
+                                                          if (people.length>0){
+                                                            let p:PersonData = people[people.length-1];
+                                                            currentId = Number(p.id);
+                                                          }
+                                                          else{
+                                                            currentId = 0;
+                                                          }
+                                                          newPerson.id = (currentId +1).toString();
+                                                        });
+
+
     const req= this.httpClient.post(this.REST_API_SERVER_PEOPLE,newPerson).subscribe(r=>{
                                                                                           console.log(r);
                                                                                         },
@@ -34,20 +51,19 @@ export class DataService {
                                                                                         });
   }
 
-  /*
-  public login(email:string, password: string): boolean{
-    let answer: boolean = false;
-    let users = [];
-    this.httpClient.get(this.REST_API_SERVER_PEOPLE).subscribe(req=>{
-                                                                      users= req;
-                                                               },
-                                                               e=>{
+  public updatePassword(pwd: string, id: number, person: PersonData){
+    console.log("update");
+    console.log(person);
+    this.httpClient.put(this.REST_API_SERVER_PEOPLE + "/" + id, person, { 
+                                                                          params: new HttpParams().set('pwd',pwd),
+                                                                          headers: new HttpHeaders().set('Authorization','some-token')
+                                                                        }).subscribe(r=>{console.log(r);},e=>{console.log(e);});
+  }
 
-                                                               });
-    return answer;
-  }*/
-
-//{  params: new HttpParams({fromString: "_page=1&_limit=20"})}
+  public getUser(id: number){
+    console.log(id);
+    return this.httpClient.get(this.REST_API_SERVER_PEOPLE + "/" + id).pipe(retry(4),catchError(this.handleError));
+  }
 
   parseLinkHeader(header) {
     if (header.length == 0) {
