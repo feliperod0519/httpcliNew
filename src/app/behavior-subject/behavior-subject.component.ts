@@ -3,6 +3,7 @@ import { BehaviorSubject, fromEvent, interval, merge } from 'rxjs';
 import { map, tap, mergeMap } from 'rxjs/operators';
 
 import { LocalStorageServiceService } from '../local-storage-service.service';
+import { PersonData } from 'src/models/peopleRequest';
 
 @Component({
   selector: 'app-behavior-subject',
@@ -50,9 +51,15 @@ export class BehaviorSubjectComponent implements OnInit {
       tap(v => setElementText('intervalValue', v))
     );
     merge(click$, interval$).subscribe();
+    //test
+    let p: PersonData = new PersonData();
+    p.id = "3";
+    p.email = "feliperod0519@test.com";
     
-    this.localStorageService.storeOnLocalStorage('hello');
-    
+    this.localStorageService.storeUserLocalStorage("3",p);
+    let p2: PersonData = this.localStorageService.getUserFromLocalStorage("3");
+    console.log(p2);
+    //test2
   }
 
   setMyStyles() {

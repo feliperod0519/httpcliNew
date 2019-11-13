@@ -1,19 +1,24 @@
 import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService, SESSION_STORAGE } from 'ngx-webstorage-service';
+import { PersonData } from 'src/models/peopleRequest';
 
-const STORAGE_KEY = "local_todolist";
+const LOCAL_STORAGE_KEY = "local_users";
+const SESSION_STORAGE_KEY = "session_users";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageServiceService {
 
-  anotherTodolist = [];
+  //anotherTodolist = [];
+  localData = [];
+  sessionData = []; 
 
-  constructor(@Inject(LOCAL_STORAGE) private storage: StorageService, 
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: StorageService, 
               @Inject(SESSION_STORAGE) private sessionStorage: StorageService) 
   { }
-
+  
+  /*
   public storeOnLocalStorage(taskTitle: string): void {
     console.log(';/');
     const currentTodoList = this.storage.get(STORAGE_KEY) || [];
@@ -31,5 +36,30 @@ export class LocalStorageServiceService {
     console.log(this.storage.get(STORAGE_KEY) || 'LocaL storage is empty');
     console.log(this.sessionStorage.get(STORAGE_KEY) || 'Session storage is empty');
   }
+  */
 
+  public storeUserLocalStorage(userId: string, person: PersonData)
+  {
+      if (this.localStorage.get(userId)==null){
+        this.localData = [];
+      }
+      this.localData.push(person);
+      this.localStorage.set(userId,person);
+  }
+
+  public storeUserSessionStorage(userId:string, person: PersonData)
+  {
+
+  }
+
+  public getUserFromLocalStorage(userId:string):PersonData{
+    let newPerson: PersonData;
+    newPerson = this.localStorage.get(userId);
+    return newPerson;
+  }
+/*
+  public getUserFromSessionStorage(userId:string):PersonData{
+
+  }
+*/
 }

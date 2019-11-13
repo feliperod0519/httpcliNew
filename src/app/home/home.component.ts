@@ -33,18 +33,42 @@ export class HomeComponent implements OnInit, OnDestroy {
                                                                           this.currentId = 0;
                                                                         }
                                                                       });
-                                                                 
-      this.dataService.getUser(3).pipe(takeUntil(this.destroy$))
+      
+      let id: number = 3;
+      let pwd: string = "hello1";                                                               
+      this.dataService.getUser(id).pipe(takeUntil(this.destroy$))
                                  .subscribe(data=>{
                                                             this.updatePeople = data;
                                                             console.log(this.updatePeople);
-                                                            
-                                                              
+                                                            this.updatePeople.pwd = pwd;
                                                             console.log(":)");
-                                                            this.dataService.updatePassword("world",3,this.updatePeople);
+                                                            this.dataService.updateInfo(3,this.updatePeople);
                                                           });
-                                               
-      //this.dataService.getUser(3).subscribe()
+      
+
+      let searchEmail: string = "feliperod0519@gmail.com";                                                  
+      this.dataService.sendGetRequestPeople().pipe(takeUntil(this.destroy$))
+                                                          .subscribe((data:any[])=>{
+                                                                                      let p = [];
+                                                                                      p=data;
+                                                                                      let f= p.find((e: PersonData)=>{
+                                                                                                                        return e.email===searchEmail;
+                                                                                                                     });
+                                                                                      console.log(":[|]");
+                                                                                      console.log(f);
+                                                                                      console.log(":[|]");
+                                                                                   });                                                     
+      /*
+          var array1 = [5, 12, 8, 130, 44];
+
+var found = array1.find(function(element) {
+  return element > 10;
+});
+
+console.log(found);
+// expected output: 12
+      */
+      
   }
 
   ngOnDestroy(){

@@ -51,13 +51,17 @@ export class DataService {
                                                                                         });
   }
 
-  public updatePassword(pwd: string, id: number, person: PersonData){
-    console.log("update");
-    console.log(person);
-    this.httpClient.put(this.REST_API_SERVER_PEOPLE + "/" + id, person, { 
-                                                                          params: new HttpParams().set('pwd',pwd),
-                                                                          headers: new HttpHeaders().set('Authorization','some-token')
-                                                                        }).subscribe(r=>{console.log(r);},e=>{console.log(e);});
+  public updateInfo(id: number, person: PersonData){
+    let newPerson: PersonData = new PersonData();
+    newPerson.id= id.toString();
+    newPerson.pwd = person.pwd;
+    newPerson.country = person.country;
+    newPerson.email = person.email;
+    newPerson.first_name = person.first_name;
+    newPerson.last_name = person.last_name;
+    newPerson.mobile = person.mobile;
+    newPerson.photo = person.photo;
+    this.httpClient.put(this.REST_API_SERVER_PEOPLE + "/" + id, newPerson).subscribe(r=>{console.log(r);},e=>{console.log(e);});
   }
 
   public getUser(id: number){
@@ -65,6 +69,14 @@ export class DataService {
     return this.httpClient.get(this.REST_API_SERVER_PEOPLE + "/" + id).pipe(retry(4),catchError(this.handleError));
   }
 
+
+
+  /*
+  , { 
+                                                                          params: new HttpParams().set('pwd',pwd),
+                                                                          headers: new HttpHeaders().set('Authorization','some-token')
+                                                                        }
+  */
   parseLinkHeader(header) {
     if (header.length == 0) {
       return ;

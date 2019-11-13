@@ -4,12 +4,12 @@ export class ContactRequest{
    text: string = '';
 }
 export class PersonData{
-    id: string= '';
-    last_name: string= '';
-    first_name: string= '';
-    email: string= '';
+    id: string= '0';
+    last_name: string= 'Cover';
+    first_name: string= 'AnAlBum';
+    email: string= 'anAlBumCover@dummy.ca';
     photo: string = 'default.jpg';
     mobile: string = '555-888-9999';
     country: string = "Canada";
-    pwd: string = "HELLO";
+    pwd: string = "hello";
 }
