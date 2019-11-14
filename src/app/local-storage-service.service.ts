@@ -49,7 +49,11 @@ export class LocalStorageServiceService {
 
   public storeUserSessionStorage(userId:string, person: PersonData)
   {
-
+    if (this.sessionStorage.get(userId)==null){
+      this.sessionData = [];
+    }
+    this.sessionData.push(person);
+    this.sessionStorage.set(userId,person);
   }
 
   public getUserFromLocalStorage(userId:string):PersonData{
@@ -57,6 +61,14 @@ export class LocalStorageServiceService {
     newPerson = this.localStorage.get(userId);
     return newPerson;
   }
+
+  public getUserFromSessionStorage(userId:string):PersonData{
+    let newPerson: PersonData;
+    newPerson = this.sessionStorage.get(userId);
+    return newPerson;
+  }
+
+  public removeUser(userId:string){}
 /*
   public getUserFromSessionStorage(userId:string):PersonData{
 

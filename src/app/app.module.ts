@@ -19,6 +19,7 @@ import { BehaviorSubjectComponent } from './behavior-subject/behavior-subject.co
 
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { LocalStorageServiceService } from './local-storage-service.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LocalStorageServiceService } from './local-storage-service.service';
     RxJSComponent,
     MouseComponent,
     RegistrationComponent,
-    BehaviorSubjectComponent
+    BehaviorSubjectComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

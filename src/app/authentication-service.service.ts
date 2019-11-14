@@ -14,9 +14,12 @@ import { LocalStorageServiceService } from '../app/local-storage-service.service
 export class AuthenticationServiceService {
 
   private currentUserSubject : BehaviorSubject<PersonData>;
-  private currentUser: Observable<PersonData>;
+  public currentUser: Observable<PersonData>;
 
-  constructor(private http: HttpClient, private dataService: DataService) { 
+  constructor(private http: HttpClient, 
+              private dataService: DataService, 
+              private storage: LocalStorageServiceService) 
+  { 
       this.currentUserSubject = new BehaviorSubject<PersonData>(new PersonData());
       this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -31,13 +34,19 @@ export class AuthenticationServiceService {
                                                                                                                   });
                                                                       if (f!=null){
                                                                         if (f.pwd === password){
+                                                                          this.storage.storeUserLocalStorage(f.id,f);
+                                                                          this.currentUserSubject.next(f);
                                                                           return f;
                                                                         }
-                                                                        else{
+                                                                        else{    
                                                                           return new PersonData();
                                                                         }
                                                                       }
                                                                       console.log(f);
                                                                     });
+  }
+
+  logout(){
+
   }
 }

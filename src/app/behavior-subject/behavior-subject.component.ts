@@ -21,8 +21,7 @@ export class BehaviorSubjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    const setElementText = (elemId, text) => 
-    document.getElementById(elemId).innerText = text.toString();
+    const setElementText = (elemId, text) =>  document.getElementById(elemId).innerText = text.toString();
     const addHtmlElement = coords => document.body.innerHTML += `
           <div 
             id=${coords.id}
